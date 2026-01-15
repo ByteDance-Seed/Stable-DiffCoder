@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stable-DiffCoder: Pushing the Frontier of Code Diffusion LLMs</title>
+    <link rel="icon" href="./imgs/logo.png">
+    <style>
+        :root {
+            --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --accent-color: #7c3aed;
+            --text-main: #2d3748;
+            --text-light: #4a5568;
+            --bg-body: #f7fafc;
+            --bg-card: #ffffff;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.7;
+            color: var(--text-main);
+            background-color: var(--bg-body);
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header */
+        header {
+            text-align: center;
+            padding: 60px 0 40px;
+        }
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+        }
+        h1 span {
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .subtitle {
+            font-size: 1.25rem;
+            color: var(--text-light);
+            margin-bottom: 30px;
+            font-weight: 400;
+        }
+        .authors {
+            font-size: 1.1rem;
+            color: #4a5568;
+            margin-bottom: 25px;
+            font-weight: 500;
+        }
+
+        /* Links/Buttons */
+        .links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 50px;
+        }
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            padding: 10px 24px;
+            background-color: #1a202c;
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: transform 0.2s, background-color 0.2s;
+        }
+        .btn:hover {
+            background-color: #4a5568;
+            transform: translateY(-2px);
+        }
+        .btn-icon {
+            margin-right: 8px;
+        }
+
+        /* Sections */
+        section {
+            background: var(--bg-card);
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+            margin-bottom: 40px;
+        }
+        h2 {
+            font-size: 2rem;
+            margin-top: 0;
+            margin-bottom: 25px;
+            color: #1a202c;
+            border-bottom: 2px solid #edf2f7;
+            padding-bottom: 15px;
+        }
+        h3 {
+            font-size: 1.5rem;
+            margin-top: 0;
+            margin-bottom: 15px;
+            color: #2d3748;
+        }
+        p {
+            margin-bottom: 1.5em;
+            color: var(--text-light);
+        }
+
+        /* Images */
+        .img-container {
+            width: 100%;
+            margin: 30px 0;
+            text-align: center;
+        }
+        .responsive-img {
+            max-width: 100%;
+            width: auto;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            max-height: 600px; 
+        }
+        .caption {
+            margin-top: 10px;
+            font-size: 0.9rem;
+            color: #718096;
+            font-style: italic;
+            text-align: center;
+        }
+        
+        /* New Class for side-by-side images in methodology */
+        .two-col-images {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin: 40px 0;
+            align-items: start;
+        }
+        .two-col-images .img-container {
+            margin: 0; /* Reset default margin for grid items */
+        }
+
+
+        /* Highlights Timeline Style */
+        .highlights-container {
+            position: relative;
+            padding-left: 20px;
+            margin-top: 40px;
+        }
+        .highlights-container::before {
+            content: "";
+            position: absolute;
+            left: 15px;
+            top: 10px;
+            bottom: 10px;
+            width: 4px;
+            background: #e2e8f0;
+            border-radius: 2px;
+        }
+        .highlight-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 25px;
+            position: relative;
+        }
+        .index-circle {
+            width: 34px;
+            height: 34px;
+            background: var(--accent-color);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            flex-shrink: 0;
+            margin-right: 20px;
+            z-index: 1;
+            box-shadow: 0 0 0 5px white;
+        }
+        .highlight-item .content {
+            background: #f8fafc;
+            padding: 15px 20px;
+            border-radius: 8px;
+            flex: 1;
+            border: 1px solid #e2e8f0;
+        }
+
+        /* Stability Boxes Layout */
+        .stability-wrapper {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        .stability-box {
+            background: #f8fafc;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+            flex: 1;
+            min-width: 280px;
+        }
+
+        /* Performance Grid */
+        .results-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        .result-card {
+            background: #fff;
+            padding: 10px;
+            border: 1px solid #edf2f7;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .results-grid, .two-col-images { /* Added two-col-images here */
+                grid-template-columns: 1fr;
+            }
+            h1 { font-size: 2.2rem; }
+            section { padding: 25px; }
+            .stability-wrapper { flex-direction: column; }
+            .two-col-images { gap: 40px; } /* Increase gap when stacked */
+        }
+
+        footer {
+            text-align: center;
+            color: #a0aec0;
+            padding: 40px 20px;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <header>
+        <h1><span>Stable-DiffCoder</span></h1>
+        <div class="subtitle">Pushing the Frontier of Code Diffusion Large Language Models</div>
+        <div class="authors">ByteDance Seed</div>
+        
+        <div class="links">
+            <a href="https://github.com/ByteDance-Seed/Stable-DiffCoder/blob/master/Stable_DiffCoder.pdf" class="btn"><span class="btn-icon">📄</span>Technical Report</a>
+            <a href="#" class="btn"><span class="btn-icon">🔗</span>arXiv</a>
+            <a href="https://github.com/ByteDance-Seed/Stable-DiffCoder" class="btn"><span class="btn-icon">💻</span>GitHub</a>
+            <a href="https://huggingface.co/collections/ByteDance-Seed/stable-diffcoder" class="btn"><span class="btn-icon">🤗</span>Models</a>
+        </div>
+    </header>
+
+    <section id="introduction">
+        <div class="img-container">
+            <img src="./imgs/intro_performance.png" alt="Benchmark performance" class="responsive-img" style="max-width: 850px;">
+        </div>
+        
+        <h2>Introduction</h2>
+        <p>
+            We are thrilled to introduce <strong>Stable-DiffCoder</strong>, a robust code diffusion Large Language Model (LLM). Built directly on the Seed-Coder architecture, data, and training pipeline, it introduces a block diffusion continual pretraining (CPT) stage equipped with a tailored warmup strategy and a block-wise clipped noise schedule.
+        </p>
+        <p>
+            Notably, with only CPT followed by supervised fine-tuning (SFT), Stable-DiffCoder surpasses many strong ~8B Autoregressive (AR) and diffusion-based code models. These results demonstrate that diffusion-based training can improve code modeling quality beyond what AR training alone can achieve, even under tightly controlled data and architecture constraints.
+        </p>
+
+        <div class="highlights-container">
+            <div class="highlight-item">
+                <div class="index-circle">1</div>
+                <div class="content">
+                    <strong>Fair & Controlled Comparison:</strong> We maintain an identical architecture and data pipeline as the AR baseline, strictly isolating the benefits of diffusion-based training.
+                </div>
+            </div>
+            <div class="highlight-item">
+                <div class="index-circle">2</div>
+                <div class="content">
+                    <strong>Block Diffusion CPT:</strong> Equipped with a custom warmup strategy and block-wise clipped noise scheduling for maximum stability.
+                </div>
+            </div>
+            <div class="highlight-item">
+                <div class="index-circle">3</div>
+                <div class="content">
+                    <strong>Actionable Insights:</strong> We provide a systematic analysis of training dynamics, offering practical guidelines for training diffusion-based LLMs.
+                </div>
+            </div>
+            <div class="highlight-item">
+                <div class="index-circle">4</div>
+                <div class="content">
+                    <strong>Strong Performance:</strong> Surpasses leading ~8B AR and diffusion code models using only CPT and SFT stages.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="methodology">
+        <h2>Methodology & Insights</h2>
+
+        <div style="margin-bottom: 60px;">
+            <h3>1. Unlocking Data Augmentation in DLLMs</h3>
+            <p>
+                Traditional bidirectional training in Diffusion LLMs (DLLMs) often introduces noise, hindering the model from learning clear reasoning patterns. Our analysis on 2.5B scale models reveals that effective DLLMs require:
+            </p>
+            <ul style="color: var(--text-light); padding-left: 20px;">
+                <li><strong>Clean Evidence:</strong> To deduce clear rules with clean and reliable evidence.</li>
+                <li><strong>Alignment:</strong> Consistency between training and inference processes.</li>
+            </ul>
+            <p>
+                <strong>Our Solution:</strong> We initialize training from a pre-annealing AR checkpoint—which retains clean, malleable knowledge—and proceed with a <strong>small block diffusion</strong> stage (learning clear knowledge and further enhancing data).
+            </p>
+            
+            <div class="two-col-images">
+                <div class="img-container">
+                    <img src="./imgs/25b.png" alt="2.5B Model Analysis" class="responsive-img">
+                    <div class="caption">Figure 1a: Analysis on 2.5B models.</div>
+                </div>
+                <div class="img-container">
+                    <img src="./imgs/pipeline.png" alt="Training Pipeline Design" class="responsive-img">
+                    <div class="caption">Figure 1b: The proposed training pipeline.</div>
+                </div>
+            </div>
+        </div>
+
+        <hr style="border: 0; border-top: 1px solid #edf2f7; margin: 40px 0;">
+
+        <div>
+            <h3>2. Ensuring Training Stability</h3>
+            <p>
+                We observed significant instability in gradient norms during the CPT of DLLMs. To address this and ensure efficient block diffusion training, we implemented two key designs:
+            </p>
+            
+            <div class="stability-wrapper">
+                <div class="stability-box">
+                    <strong>Warmup for Stable CPT</strong><br>
+                    By gradually increasing mask pattern difficulty and removing cross-entropy weighting during the warmup phase, we achieve a stable transition from AR to DLLM without needing sensitive hyperparameter tuning.
+                </div>
+                <div class="stability-box">
+                    <strong>Block-wise Clipped Noise Scheduling</strong><br>
+                    We tailored the noise schedule boundaries specifically for block diffusion, making learning within small blocks more efficient and stable.
+                </div>
+            </div>
+
+            <div class="img-container">
+                <img src="./imgs/warmup.png" alt="Impact of warmup on loss and grad norm" class="responsive-img" style="width: 100%; max-width: 900px;">
+                <div class="caption">Figure 2: Impact of warmup strategies on Loss and Grad Norm.</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="results">
+        <h2>Performance</h2>
+        <p>
+            Stable-DiffCoder demonstrates robust capabilities across both Base and Instruct versions. It consistently outperforms the AR baseline and maintains a competitive edge against other state-of-the-art ~8B AR and DLLM code models.
+        </p>
+
+        <div class="results-grid">
+            <div class="result-card">
+                <img src="./imgs/base_1.png" alt="Base Model Result 1" class="responsive-img">
+                <div class="caption">Base Model Performance (I)</div>
+            </div>
+            <div class="result-card">
+                <img src="./imgs/base_2.png" alt="Base Model Result 2" class="responsive-img">
+                <div class="caption">Base Model Performance (II)</div>
+            </div>
+            <div class="result-card">
+                <img src="./imgs/instruct_1.png" alt="Instruct Model Result 1" class="responsive-img">
+                <div class="caption">Instruct Model Performance (I)</div>
+            </div>
+            <div class="result-card">
+                <img src="./imgs/instruct_2.png" alt="Instruct Model Result 2" class="responsive-img">
+                <div class="caption">Instruct Model Performance (II)</div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 ByteDance Seed.</p>
+    </footer>
+
+</div>
+
+</body>
+</html>
