@@ -1,4 +1,7 @@
-# <img src="./imgs/logo.png" height="25"> Stable-DiffCoder: Pushing the Frontier of Code Diffusion Large Langugae Model
+<h1 align="center">
+  <img src="./imgs/logo.png" height="35" style="vertical-align: middle;">
+  Stable-DiffCoder: Pushing the Frontier of Code Diffusion Large Language Model
+</h1>
 
 <p align="center">
 🌐 <a href="https://bytedance-seed.github.io/Stable-DiffCoder/"> Homepage</a>&nbsp&nbsp | &nbsp&nbsp🤗 <a href="https://huggingface.co/collections/ByteDance-Seed/stable-diffcoder">Hugging Face</a>&nbsp&nbsp | &nbsp&nbsp📄 <a href="https://arxiv.org/abs/xxx">arXiv</a>
