@@ -15,7 +15,7 @@ Notably, with only CPT followed by supervised fine-tuning, Stable-DiffCoder furt
 
 ## 📢 News
 
-[2026/01/12]🔥 We release [Stable-DiffCoder](https://bytedance-stable-diffcoder.github.io)!
+[2026/01/22]🔥 We release [Stable-DiffCoder](https://bytedance-stable-diffcoder.github.io)!
 
 
 ---
