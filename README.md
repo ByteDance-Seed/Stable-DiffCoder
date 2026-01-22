@@ -80,6 +80,8 @@ If you find Stable-DiffCoder useful for your research and applications, feel fre
 }
 ```
 
+## Contact
+If you have any question, feel free to contact 📫 facicofan@gmail.com
 
 ## 📜 License
 This project is licensed under MIT License. See the [LICENSE](./LICENSE) file for details.
