@@ -1,7 +1,7 @@
 # <img src="./imgs/logo.png" height="25"> Stable-DiffCoder: Pushing the Frontier of Code Diffusion Large Langugae Model
 
 <p align="center">
-🌐 <a href="https://bytedance-stable-diffcoder.github.io/"> Homepage</a>&nbsp&nbsp | &nbsp&nbsp🤗 <a href="https://huggingface.co/collections/ByteDance-Seed/stable-diffcoder">Hugging Face</a>&nbsp&nbsp | &nbsp&nbsp📄 <a href="https://arxiv.org/abs/xxx">arXiv</a>
+🌐 <a href="https://bytedance-seed.github.io/Stable-DiffCoder/"> Homepage</a>&nbsp&nbsp | &nbsp&nbsp🤗 <a href="https://huggingface.co/collections/ByteDance-Seed/stable-diffcoder">Hugging Face</a>&nbsp&nbsp | &nbsp&nbsp📄 <a href="https://arxiv.org/abs/xxx">arXiv</a>
 </p>
 
 We are thrilled to introduce **Stable-DiffCoder**, which is a strong code diffusion large language model. Built directly on the **Seed-Coder** architecture, data, and training pipeline, it introduces a block diffusion continual pretraining (CPT) stage with a tailored warmup and block-wise clipped noise schedule.
