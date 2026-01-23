@@ -4,7 +4,7 @@
 </h1>
 
 <p align="center">
-🌐 <a href="https://bytedance-seed.github.io/Stable-DiffCoder/"> Homepage</a>&nbsp&nbsp | &nbsp&nbsp🤗 <a href="https://huggingface.co/collections/ByteDance-Seed/stable-diffcoder">Hugging Face</a>&nbsp&nbsp | &nbsp&nbsp📄 <a href="https://arxiv.org/abs/xxx">arXiv</a>
+🌐 <a href="https://bytedance-seed.github.io/Stable-DiffCoder/"> Homepage</a>&nbsp&nbsp | &nbsp&nbsp🤗 <a href="https://huggingface.co/collections/ByteDance-Seed/stable-diffcoder">Hugging Face</a>&nbsp&nbsp | &nbsp&nbsp📄 <a href="https://arxiv.org/abs/2601.15892">arXiv</a>
 </p>
 
 We are thrilled to introduce **Stable-DiffCoder**, which is a strong code diffusion large language model. Built directly on the **Seed-Coder** architecture, data, and training pipeline, it introduces a block diffusion continual pretraining (CPT) stage with a tailored warmup and block-wise clipped noise schedule.
@@ -76,10 +76,14 @@ For detailed benchmark results and analysis, please refer to our [Technical Repo
 If you find Stable-DiffCoder useful for your research and applications, feel free to give us a star ⭐ or cite us using:
 
 ```bibtex
-@misc{seed2026stablediffcoder,
-      title={{Stable-DiffCoder}: Pushing the Frontier of Code Diffusion Large Language Model}, 
-      author={{ByteDance Seed} and Chenghao Fan and Wen Heng and Bo Li and Sichen Liu and Yuxuan Song and Jing Su and Xiaoye Qu and Kai Shen and Wei Wei},
-      year={2026}
+@misc{fan2026stablediffcoderpushingfrontiercode,
+      title={Stable-DiffCoder: Pushing the Frontier of Code Diffusion Large Language Model}, 
+      author={Chenghao Fan and Wen Heng and Bo Li and Sichen Liu and Yuxuan Song and Jing Su and Xiaoye Qu and Kai Shen and Wei Wei},
+      year={2026},
+      eprint={2601.15892},
+      archivePrefix={arXiv},
+      primaryClass={cs.CL},
+      url={https://arxiv.org/abs/2601.15892}, 
 }
 ```
 
