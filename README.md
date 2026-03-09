@@ -15,8 +15,9 @@ Notably, with only CPT followed by supervised fine-tuning, Stable-DiffCoder furt
 
 ## 📢 News
 
-[2026/01/22]🔥 We release [Stable-DiffCoder](https://bytedance-seed.github.io/Stable-DiffCoder)!
+[2026/01/22] We release [Stable-DiffCoder](https://bytedance-seed.github.io/Stable-DiffCoder)!
 
+[2026/03/09] Update to adapt transformers v4.46.2->v5.3.0!
 
 ---
 
@@ -40,10 +41,18 @@ We are excited to introduce **Stable-DiffCoder**, featuring three powerful model
 
 All the models are publicly available on [Hugging Face collection](https://huggingface.co/collections/ByteDance-Seed/stable-diffcoder).  
 
+<details>
+<summary>old version (transformers==4.46.2)</summary>
+
+- [Stable-DiffCoder-8B-Instruct](https://huggingface.co/ByteDance-Seed/Stable-DiffCoder-8B-Instruct/tree/b5fd5dc011d47ab6d3669fe6fed8c172b9cd7f39)
+- [Stable-DiffCoder-8B-Base](https://huggingface.co/ByteDance-Seed/Stable-DiffCoder-8B-Base/tree/1a32eee228720b745e3d5a1eb838907e4aa48482)
+
+</details>
+
 ### 👉🏻 Deploying Stable-DiffCoder-8B-Instruct with `transformers`
 
 ```python
-# pip install transformers==4.46.2
+# pip install transformers==5.3.0
 from transformers import AutoTokenizer, AutoModelForCausalLM
 import torch
 
